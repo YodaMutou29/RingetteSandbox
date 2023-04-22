@@ -64,10 +64,13 @@ public class Crease : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name != "Ring" 
-            && other.gameObject.name != "TeamGoalie"
+        if (other.gameObject.name != "TeamGoalie"
             && other.gameObject.name != "OpponentGoalie") 
         {
+            if (other.gameObject.name == "Ring"
+                && !Ring.GetComponent<Ring>().ControlledBy()) {
+                return;
+            }
             Audio.PlayOneShot(Whistle);
             CreaseViolated = true;
             GetFreezePositions();

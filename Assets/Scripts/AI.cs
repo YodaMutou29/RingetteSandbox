@@ -3,32 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class AI : MonoBehaviour
+public class AI : Player
 {
-    // objects
-    private GameObject Ring;
-    private GameObject Tip;
-    private GameObject OpponentNet;
-    private Rigidbody RingRigidbody;
-
-    // audio
-    private AudioSource Audio;
-    [SerializeField] private AudioClip RingStabSound;
-
-    // speeds
-    [SerializeField] private float speed = 7.0f;
-    [SerializeField] private float ShotSpeed = 200f;
-
-    // booleans
-    public bool HasRing = false;
-    private bool RingShot = false;
-
-    // delay variables
-    private float Delay = 3f;
-
-    private float DistanceFromRing;
-    private float DistanceFromNet;
-
     // Start is called before the first frame update
     void Start()
     {

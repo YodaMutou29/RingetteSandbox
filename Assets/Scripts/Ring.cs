@@ -6,6 +6,7 @@ public class Ring : MonoBehaviour
 {
     // objects
     private Rigidbody RingRigidbody;
+    List<GameObject> PlayerTips = new List<GameObject>();
     
     // audio
     private AudioSource Audio;
@@ -25,6 +26,9 @@ public class Ring : MonoBehaviour
     {
         RingRigidbody = GetComponent<Rigidbody>();
         Audio = GetComponent<AudioSource>();
+
+        PlayerTips.Add(GameObject.Find("PlayerTip"));
+        PlayerTips.Add(GameObject.Find("Tip"));
     }
 
     // Update is called once per frame
@@ -43,5 +47,16 @@ public class Ring : MonoBehaviour
             RingRigidbody.velocity = Vector3.zero;
             transform.position = RingDropPosition;
         }
+    }
+
+    public GameObject ControlledBy()
+    {
+        GameObject RingObject = GameObject.Find("Ring");
+        foreach (GameObject tip in PlayerTips) {
+            if (Vector3.Distance(RingObject.transform.position, tip.transform.position) < 2) {
+                return tip;
+            }
+        }
+        return null;
     }
 }
